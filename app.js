@@ -21,7 +21,7 @@ db.once('open', () => {
 
 // 設定路由
 app.use('/', require('./routes/home.js'))
-app.use('/expenseTracker', require('./routes/expenseTracker.js'))
+app.use('/expenseTrackers', require('./routes/expenseTracker.js'))
 
 app.listen(3000, () => {
   console.log('App is running')
