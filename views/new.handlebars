@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="row">
+    <h2 class="col-12">請輸入你的支出</h2>
+    <form action="/expenseTrackers" method="POST" class="col-12">
+      <div class="col-12">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">名稱 *</span>
+          </div>
+          <input type="text" class="form-control" name="name" placeholder="輸入支出名稱">
+        </div>
+
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">日期 *</span>
+          </div>
+          <input type="date" class="form-control" name="date" placeholder="Username">
+        </div>
+
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">類別 *</span>
+          </div>
+          {{!-- <input type="text" class="form-control" placeholder="Username"> --}}
+          <select class="custom-select" name="category">
+            <option selected>類別</option>
+            <option value="家居物業">家居物業</option>
+            <option value="交通出行">交通出行</option>
+            <option value="休閒娛樂">休閒娛樂</option>
+            <option value="餐飲食品">餐飲食品</option>
+            <option value="其他">其他</option>
+          </select>
+        </div>
+
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">金額 *</span>
+          </div>
+          <input type="number" class="form-control" name="amount" placeholder="輸入金額">
+        </div>
+      </div>
+
+
+      <button type="submit" class="btn ">新增支出</button>
+    </form>
+  </div>
+</div>

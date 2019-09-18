@@ -2,9 +2,13 @@ const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
 const exphbs = require('express-handlebars')
+const bodyParser = require('body-parser')
 
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
+app.use(bodyParser.json())
+
+app.use(bodyParser.urlencoded({ extended: true }))
 
 // 設定 mongoDB
 mongoose.connect('mongodb://localhost/expenseTracker', {
