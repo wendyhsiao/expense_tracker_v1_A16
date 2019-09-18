@@ -16,8 +16,8 @@ db.once('open', () => {
 })
 
 // 載入 model
-const Record = require('./models/record.js')
-const User = require('./models/user.js')
+// const Record = require('./models/record.js')
+// const User = require('./models/user.js')
 
 // 設定路由
 app.use('/', require('./routes/home.js'))
