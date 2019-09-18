@@ -1,1 +1,46 @@
-<h2>這是index</h2>
+<div class="container">
+  <div class="row">
+    <select class="custom-select">
+      <option selected>類別</option>
+      <option value="1">家居物業</option>
+      <option value="2">交通出行</option>
+      <option value="3">休閒娛樂</option>
+      <option value="4">餐飲食品</option>
+      <option value="5">其他</option>
+    </select>
+  </div>
+
+  <div class="row">
+    <ul>
+      {{#each records}}
+      <li>
+
+        <div class="input-group mb-3 col-8">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">{{this.category}}</span>
+          </div>
+
+          <div class="form-control">
+            <p>{{this.name}}</p>
+            <span>{{this.date}}</span>
+          </div>
+
+          <div class="input-group-append">
+            <span class="input-group-text" id="basic-addon2">{{this.amount}}</span>
+          </div>
+        </div>
+
+        <form action="/expenseTrackers/{{this.id}}/delete" method="POST" class="col-4">
+          <a href="/expenseTrackers/{{this.id}}">修改</a>
+          <button type="submit">刪除</button>
+        </form>
+
+      </li>
+      {{/each}}
+    </ul>
+  </div>
+
+  <div class="row">
+    <a href="/expenseTrackers/news">新增支出</a>
+  </div>
+</div>
