@@ -65,10 +65,13 @@ router.post('/:id', (req, res) => {
 
 // 刪除支出頁面
 router.post('/:id/delete', (req, res) => {
-  res.send('刪除頁面')
+  Record.findOne({ _id: req.params.id }, (err, item) => {
+    if (err) return console.error(err)
+    item.remove(err => {
+      if (err) return console.error(err)
+      return res.redirect('/')
+    })
+  })
 })
 
 module.exports = router
-
-// 修改 new collection (預設今日)
-//下載handlebars
