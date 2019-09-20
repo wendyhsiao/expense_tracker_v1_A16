@@ -1,12 +1,21 @@
 <div class="container">
   <div class="row">
-    <select class="custom-select">
-      <option selected>類別</option>
-      <option value="1">家居物業</option>
-      <option value="2">交通出行</option>
-      <option value="3">休閒娛樂</option>
-      <option value="4">餐飲食品</option>
-      <option value="5">其他</option>
+    <select class="custom-select" name="category" Size=1 onChange="self.location.href=this.value">
+      <option selected{{#ifhome item.category '類別 / 全部' it}} selected="selected" {{/ifhome}} value="/expenseTrackers">類別
+        / 全部
+      </option>
+      <option {{#ifhome item.category '家居物業' it}} selected="selected" {{/ifhome}} value="/?category=家居物業">家居物業
+      </option>
+      <option {{#ifhome item.category '交通出行' it}} selected="selected" {{/ifhome}} value="/?category=交通出行">交通出行
+      </option>
+      <option {{#ifhome item.category '休閒娛樂' it}} selected="selected" {{/ifhome}} value="/?category=休閒娛樂">休閒娛樂
+      </option>
+      <option {{#ifhome item.category '餐飲食品' it}} selected="selected" {{/ifhome}} value="/?category=餐飲食品">餐飲食品
+      </option>
+      <option {{#ifhome item.category '其他' it}} selected="selected" {{/ifhome}} value="/?category=其他">
+        其他
+      </option>
+
     </select>
   </div>
 
@@ -44,3 +53,27 @@
     <a href="/expenseTrackers/new">新增支出</a>
   </div>
 </div>
+
+
+{{!-- <Select Size=1 onChange="self.location.href=this.value">
+  <Option value="網頁或網址1">第1個連結
+  <Option value="網頁或網址2">第2個連結
+  <Option value="網頁或網址3">第3個連結
+</Select>ex:使用範例
+<Select Size=1 onChange="self.location.href=this.value">
+  <Option value="http://www.yahoo.com.tw">連結到雅虎喔
+  <Option value="a.html">連結到a.html
+  <Option value="b.html">連結到b.htm
+</Select>2.下拉式超連結..本語法會將指定的頁面開在新視窗裡
+
+<Select Size=1 onChange="window.open(this.value)">
+  <Option value="網頁或網址1">第1個連結
+  <Option value="網頁或網址2">第2個連結
+  <Option value="網頁或網址3">第3個連結
+</Select>
+ex:使用範例
+<Select Size=1 onChange="window.open(this.value)">
+  <Option value="http://www.yahoo.com.tw">連結到雅虎喔
+  <Option value="a.html">連結到a.html
+  <Option value="b.html">連結到b.htm
+</Select> --}}

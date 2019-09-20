@@ -38,6 +38,8 @@ router.post('/', (req, res) => {
 
 // 修改支出頁面
 Handlebars.registerHelper('ifselect', function(arg1, arg2, options) {
+  console.log('expense', this)
+
   return arg1 == arg2 ? options.fn(this) : options.inverse(this)
 })
 
