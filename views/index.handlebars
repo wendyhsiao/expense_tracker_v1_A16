@@ -1,5 +1,6 @@
 <div class="container">
   <div class="row">
+    <a href="/expenseTrackers/new">新增支出</a>
     <select class="custom-select" name="category" Size=1 onChange="self.location.href=this.value">
       <option selected{{#ifhome item.category '類別 / 全部' it}} selected="selected" {{/ifhome}} value="/expenseTrackers">類別
         / 全部
