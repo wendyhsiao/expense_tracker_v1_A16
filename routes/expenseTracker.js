@@ -38,8 +38,6 @@ router.post('/', (req, res) => {
 
 // 修改支出頁面
 Handlebars.registerHelper('ifselect', function(arg1, arg2, options) {
-  console.log('expense', this)
-
   return arg1 == arg2 ? options.fn(this) : options.inverse(this)
 })
 
@@ -62,7 +60,21 @@ router.get('/:id/edit', (req, res) => {
 })
 
 router.put('/:id', (req, res) => {
-  res.redirect('/')
+  Record.findOne({ _id: req.params.id }, (err, item) => {
+    console.log('item', item)
+    if (err) return console.error(err)
+    item.name = req.body.name
+    item.category = req.body.category
+    item.date = req.body.date
+    item.amount = req.body.amount
+
+    item
+      .save()
+      .then(item => {
+        return res.redirect('/')
+      })
+      .catch(err => console.log(err))
+  })
 })
 
 // 刪除支出頁面
