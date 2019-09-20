@@ -61,12 +61,12 @@ router.get('/:id/edit', (req, res) => {
   })
 })
 
-router.post('/:id', (req, res) => {
-  res.send('修改頁面')
+router.put('/:id', (req, res) => {
+  res.redirect('/')
 })
 
 // 刪除支出頁面
-router.post('/:id/delete', (req, res) => {
+router.delete('/:id/delete', (req, res) => {
   Record.findOne({ _id: req.params.id }, (err, item) => {
     if (err) return console.error(err)
     item.remove(err => {

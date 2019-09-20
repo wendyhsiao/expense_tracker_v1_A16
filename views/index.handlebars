@@ -40,7 +40,7 @@
           </div>
         </div>
 
-        <form action="/expenseTrackers/{{this.id}}/delete" method="POST" class="col-4">
+        <form action="/expenseTrackers/{{this.id}}?_method=DELETE" method="POST" class="col-4">
           <a href="/expenseTrackers/{{this.id}}/edit">修改</a>
           <button type="submit">刪除</button>
         </form>

@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <h2 class="col-12">請修改你的支出</h2>
-    <form action="/expenseTrackers" method="POST" class="col-12">
+    <form action="/expenseTrackers/{{item.id}}?_method=PUT" method="POST" class="col-12">
       <div class="col-12">
         <div class="input-group mb-3">
           <div class="input-group-prepend">
