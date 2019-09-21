@@ -55,7 +55,7 @@ app.use((req, res, next) => {
 
 // 設定路由
 app.use('/', require('./routes/home.js'))
-app.use('/expenseTrackers', require('./routes/expenseTracker.js'))
+app.use('/records', require('./routes/record.js'))
 app.use('/users', require('./routes/user.js'))
 
 app.listen(3000, () => {
