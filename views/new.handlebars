@@ -1,6 +1,8 @@
-<div class="container">
+<div class="container col-6 mt-5">
   <div class="row">
-    <h2 class="col-12">請輸入你的支出</h2>
+    <div class="col-12 mb-5" style="text-align:center;">
+      <h2 class="col-12">請輸入你的支出</h2>
+    </div>
     <form action="/expenseTrackers" method="POST" class="col-12">
       <div class="col-12">
         <div class="input-group mb-3">
@@ -38,10 +40,9 @@
           </div>
           <input type="number" class="form-control" name="amount" placeholder="輸入金額">
         </div>
+
+        <button type="submit" class="btn btn-primary mr-auto ">新增支出</button>
       </div>
-
-
-      <button type="submit" class="btn ">新增支出</button>
     </form>
   </div>
 </div>

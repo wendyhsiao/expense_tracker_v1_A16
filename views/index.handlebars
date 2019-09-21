@@ -1,80 +1,55 @@
-<div class="container">
+<div class="container mt-5">
   <div class="row">
-    <a href="/expenseTrackers/new">新增支出</a>
-    <select class="custom-select" name="category" Size=1 onChange="self.location.href=this.value">
-      <option selected{{#ifhome item.category '類別 / 全部' it}} selected="selected" {{/ifhome}} value="/expenseTrackers">類別
-        / 全部
-      </option>
-      <option {{#ifhome item.category '家居物業' it}} selected="selected" {{/ifhome}} value="/?category=家居物業">家居物業
-      </option>
-      <option {{#ifhome item.category '交通出行' it}} selected="selected" {{/ifhome}} value="/?category=交通出行">交通出行
-      </option>
-      <option {{#ifhome item.category '休閒娛樂' it}} selected="selected" {{/ifhome}} value="/?category=休閒娛樂">休閒娛樂
-      </option>
-      <option {{#ifhome item.category '餐飲食品' it}} selected="selected" {{/ifhome}} value="/?category=餐飲食品">餐飲食品
-      </option>
-      <option {{#ifhome item.category '其他' it}} selected="selected" {{/ifhome}} value="/?category=其他">
-        其他
-      </option>
-
-    </select>
+    <div class="col-12 mb-5" style="text-align:center;">
+      <h2>總金額: {{sum}}</h2>
+    </div>
   </div>
 
   <div class="row">
-    <ul>
-      {{#each records}}
-      <li>
-
-        <div class="input-group mb-3 col-8">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="basic-addon1">{{this.category}}</span>
-          </div>
-
-          <div class="form-control">
-            <p>{{this.name}}</p>
-            <span>{{this.date}}</span>
-          </div>
-
-          <div class="input-group-append">
-            <span class="input-group-text" id="basic-addon2">{{this.amount}}</span>
-          </div>
-        </div>
-
-        <form action="/expenseTrackers/{{this.id}}/delete?_method=DELETE" method="POST" class="col-4">
-          <a href="/expenseTrackers/{{this.id}}/edit">修改</a>
-          <button type="submit">刪除</button>
-        </form>
-
-      </li>
-      {{/each}}
-    </ul>
+    <div class="col-12 clearfix">
+      <a href="/expenseTrackers/new" class="btn btn-primary mr-auto">新增支出</a>
+      <select class="custom-select mr-auto col-5 col-right" name="category" Size=1
+        onChange="self.location.href=this.value">
+        <option selected{{#ifhome item.category '類別 / 全部' itemAll}} selected="selected" {{/ifhome}}
+          value="/expenseTrackers">
+          類別
+          / 全部
+        </option>
+        <option {{#ifhome item.category '家居物業' itemAll}} selected="selected" {{/ifhome}} value="/?category=家居物業">家居物業
+        </option>
+        <option {{#ifhome item.category '交通出行' itemAll}} selected="selected" {{/ifhome}} value="/?category=交通出行">交通出行
+        </option>
+        <option {{#ifhome item.category '休閒娛樂' itemAll}} selected="selected" {{/ifhome}} value="/?category=休閒娛樂">休閒娛樂
+        </option>
+        <option {{#ifhome item.category '餐飲食品' itemAll}} selected="selected" {{/ifhome}} value="/?category=餐飲食品">餐飲食品
+        </option>
+        <option {{#ifhome item.category '其他' itemAll}} selected="selected" {{/ifhome}} value="/?category=其他">
+          其他
+        </option>
+      </select></div>
   </div>
 
   <div class="row">
-    <a href="/expenseTrackers/new">新增支出</a>
+    <div class="col-12">
+      <ul class="list-group mt-3">
+        {{#each records}}
+        <li class="list-group-item ">
+          <div class="input-group col-auto mb-3">
+            <div class="col-auto m-auto" id="basic-addon1">{{this.category}}</div>
+            <div class="col-auto m-auto">
+              <p>{{this.name}}</p>
+              <span>{{this.date}}</span>
+            </div>
+            <div class="col-auto m-auto" id="basic-addon2">{{this.amount}}</div>
+            <form action="/expenseTrackers/{{this.id}}/delete?_method=DELETE" method="POST" class="col-auto m-auto">
+              <a href="/expenseTrackers/{{this.id}}/edit" class="btn btn-outline-primary mr-3">修改</a>
+              <button type="submit" class="btn btn-outline-danger">刪除</button>
+            </form>
+          </div>
+        </li>
+        {{/each}}
+      </ul>
+    </div>
+
   </div>
 </div>
-
-
-{{!-- <Select Size=1 onChange="self.location.href=this.value">
-  <Option value="網頁或網址1">第1個連結
-  <Option value="網頁或網址2">第2個連結
-  <Option value="網頁或網址3">第3個連結
-</Select>ex:使用範例
-<Select Size=1 onChange="self.location.href=this.value">
-  <Option value="http://www.yahoo.com.tw">連結到雅虎喔
-  <Option value="a.html">連結到a.html
-  <Option value="b.html">連結到b.htm
-</Select>2.下拉式超連結..本語法會將指定的頁面開在新視窗裡
-
-<Select Size=1 onChange="window.open(this.value)">
-  <Option value="網頁或網址1">第1個連結
-  <Option value="網頁或網址2">第2個連結
-  <Option value="網頁或網址3">第3個連結
-</Select>
-ex:使用範例
-<Select Size=1 onChange="window.open(this.value)">
-  <Option value="http://www.yahoo.com.tw">連結到雅虎喔
-  <Option value="a.html">連結到a.html
-  <Option value="b.html">連結到b.htm
-</Select> --}}

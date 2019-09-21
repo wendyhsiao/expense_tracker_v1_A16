@@ -21,13 +21,31 @@ router.get('/', (req, res) => {
         .sort({})
         .exec((err, records) => {
           if (err) return console.error(err)
-          return res.render('index', { records: records, item: records[0] })
+          let sum = 0
+          records.forEach(recordsOne => {
+            sum += recordsOne.amount
+          })
+
+          return res.render('index', {
+            records: records,
+            item: records[0],
+            sum
+          })
         })
     : Record.find({})
         .sort({})
         .exec((err, records) => {
           if (err) return console.error(err)
-          return res.render('index', { records: records, it: '類別 / 全部' })
+          let sum = 0
+          records.forEach(recordsOne => {
+            sum += recordsOne.amount
+          })
+
+          return res.render('index', {
+            records: records,
+            itemAll: '類別 / 全部',
+            sum
+          })
         })
 })
 

@@ -1,0 +1,13 @@
+.clearfix::after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+.col-left {
+  float: left;
+}
+
+.col-right {
+  float: right;
+}
