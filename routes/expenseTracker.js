@@ -5,13 +5,14 @@ const Handlebars = require('handlebars')
 // 載入 model
 const Record = require('../models/record.js')
 // const User = require('./models/user.js')
+const { authenticated } = require('../config/auth')
 
-router.get('/', (req, res) => {
+router.get('/', authenticated, (req, res) => {
   return res.redirect('/')
 })
 
 // 新增支出頁面
-router.get('/new', (req, res) => {
+router.get('/new', authenticated, (req, res) => {
   let objDate = new Date()
   var mm = objDate.getMonth() + 1
   var dd = objDate.getDate()
@@ -23,7 +24,7 @@ router.get('/new', (req, res) => {
   res.render('new', { today: today })
 })
 
-router.post('/', (req, res) => {
+router.post('/', authenticated, (req, res) => {
   const newRecord = new Record({
     name: req.body.name,
     category: req.body.category,
@@ -44,7 +45,7 @@ Handlebars.registerHelper('ifselect', function(arg1, arg2, options) {
   return arg1 == arg2 ? options.fn(this) : options.inverse(this)
 })
 
-router.get('/:id/edit', (req, res) => {
+router.get('/:id/edit', authenticated, (req, res) => {
   Record.findOne({ _id: req.params.id }, (err, item) => {
     if (err) return console.error(err)
 
@@ -62,7 +63,7 @@ router.get('/:id/edit', (req, res) => {
   })
 })
 
-router.put('/:id', (req, res) => {
+router.put('/:id', authenticated, (req, res) => {
   Record.findOne({ _id: req.params.id }, (err, item) => {
     console.log('item', item)
     if (err) return console.error(err)
@@ -81,7 +82,7 @@ router.put('/:id', (req, res) => {
 })
 
 // 刪除支出頁面
-router.delete('/:id/delete', (req, res) => {
+router.delete('/:id/delete', authenticated, (req, res) => {
   Record.findOne({ _id: req.params.id }, (err, item) => {
     if (err) return console.error(err)
     item.remove(err => {
@@ -92,10 +93,3 @@ router.delete('/:id/delete', (req, res) => {
 })
 
 module.exports = router
-
-// 日期寫法2
-// var nowDate = new Date()
-// console.log('nowDate', nowDate)
-// var day = ('0' + nowDate.getDate()).slice(-2) //格式化日，如果小於9，前面補0
-// var month = ('0' + (nowDate.getMonth() + 1)).slice(-2) //格式化月，如果小於9，前面補0
-// var today = nowDate.getFullYear() + '-' + month + '-' + day //拼裝完整日期格式

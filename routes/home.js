@@ -5,8 +5,9 @@ const Handlebars = require('handlebars')
 // 載入 model
 const Record = require('../models/record.js')
 // const User = require('./models/user.js')
+const { authenticated } = require('../config/auth')
 
-router.get('/', (req, res) => {
+router.get('/', authenticated, (req, res) => {
   const category = req.query.category
   Handlebars.registerHelper('ifhome', function(arg1, arg2, arg3, options) {
     if (arg1 == arg2 || arg3 == arg2) {
