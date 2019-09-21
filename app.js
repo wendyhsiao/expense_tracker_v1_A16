@@ -4,6 +4,7 @@ const mongoose = require('mongoose')
 const exphbs = require('express-handlebars')
 const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
+const session = require('express-session')
 
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
@@ -26,6 +27,15 @@ db.on('error', () => {
 db.once('open', () => {
   console.log('mongodb connected')
 })
+
+// 設定 session 認證
+app.use(
+  session({
+    secret: 'your secret key', // secret: 定義一組屬於你的字串做為私鑰
+    resave: false,
+    saveUninitialized: true
+  })
+)
 
 // 載入 model
 // const Record = require('./models/record.js')
