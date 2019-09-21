@@ -29,7 +29,8 @@ router.post('/', authenticated, (req, res) => {
     name: req.body.name,
     category: req.body.category,
     date: req.body.date,
-    amount: req.body.amount
+    amount: req.body.amount,
+    userId: req.user._id
   })
 
   newRecord
@@ -46,7 +47,7 @@ Handlebars.registerHelper('ifselect', function(arg1, arg2, options) {
 })
 
 router.get('/:id/edit', authenticated, (req, res) => {
-  Record.findOne({ _id: req.params.id }, (err, item) => {
+  Record.findOne({ _id: req.params.id, userId: req.user._id }, (err, item) => {
     if (err) return console.error(err)
 
     let objDate = item.date
@@ -64,7 +65,7 @@ router.get('/:id/edit', authenticated, (req, res) => {
 })
 
 router.put('/:id', authenticated, (req, res) => {
-  Record.findOne({ _id: req.params.id }, (err, item) => {
+  Record.findOne({ _id: req.params.id, userId: req.user._id }, (err, item) => {
     console.log('item', item)
     if (err) return console.error(err)
     item.name = req.body.name
@@ -83,7 +84,7 @@ router.put('/:id', authenticated, (req, res) => {
 
 // 刪除支出頁面
 router.delete('/:id/delete', authenticated, (req, res) => {
-  Record.findOne({ _id: req.params.id }, (err, item) => {
+  Record.findOne({ _id: req.params.id, userId: req.user._id }, (err, item) => {
     if (err) return console.error(err)
     item.remove(err => {
       if (err) return console.error(err)

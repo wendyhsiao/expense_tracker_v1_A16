@@ -18,7 +18,7 @@ router.get('/', authenticated, (req, res) => {
   })
 
   category
-    ? Record.find({ category })
+    ? Record.find({ userId: req.user._id, category })
         .sort({})
         .exec((err, records) => {
           if (err) return console.error(err)
@@ -33,7 +33,7 @@ router.get('/', authenticated, (req, res) => {
             sum
           })
         })
-    : Record.find({})
+    : Record.find({ userId: req.user._id })
         .sort({})
         .exec((err, records) => {
           if (err) return console.error(err)
