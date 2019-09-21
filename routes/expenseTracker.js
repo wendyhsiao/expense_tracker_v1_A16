@@ -12,11 +12,14 @@ router.get('/', (req, res) => {
 
 // 新增支出頁面
 router.get('/new', (req, res) => {
-  var now = new Date()
-  var day = ('0' + now.getDate()).slice(-2) //格式化日，如果小於9，前面補0
-  var month = ('0' + (now.getMonth() + 1)).slice(-2) //格式化月，如果小於9，前面補0
-  var today = now.getFullYear() + '-' + month + '-' + day //拼裝完整日期格式
-
+  let objDate = new Date()
+  var mm = objDate.getMonth() + 1
+  var dd = objDate.getDate()
+  var today = [
+    objDate.getFullYear(),
+    (mm > 9 ? '' : '0') + mm,
+    (dd > 9 ? '' : '0') + dd
+  ].join('-')
   res.render('new', { today: today })
 })
 
@@ -89,3 +92,10 @@ router.delete('/:id/delete', (req, res) => {
 })
 
 module.exports = router
+
+// 日期寫法2
+// var nowDate = new Date()
+// console.log('nowDate', nowDate)
+// var day = ('0' + nowDate.getDate()).slice(-2) //格式化日，如果小於9，前面補0
+// var month = ('0' + (nowDate.getMonth() + 1)).slice(-2) //格式化月，如果小於9，前面補0
+// var today = nowDate.getFullYear() + '-' + month + '-' + day //拼裝完整日期格式
