@@ -67,7 +67,7 @@ app.use((req, res, next) => {
 app.use('/', require('./routes/home.js'))
 app.use('/records', require('./routes/record.js'))
 app.use('/users', require('./routes/user.js'))
-app.use('/auth', require('./routes/auths'))
+app.use('/auth', require('./routes/auths.js'))
 
 app.listen(process.env.PORT || 3000, () => {
   console.log('App is running')
