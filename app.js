@@ -22,11 +22,14 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
 
 // 設定 mongoDB
-mongoose.connect(process.env.MONGODB_URI ||'mongodb://localhost/expenseTracker', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useCreateIndex: true
-})
+mongoose.connect(
+  process.env.MONGODB_URI || 'mongodb://localhost/expenseTracker',
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true
+  }
+)
 const db = mongoose.connection
 db.on('error', () => {
   console.log('mongodb error')
@@ -66,6 +69,6 @@ app.use('/records', require('./routes/record.js'))
 app.use('/users', require('./routes/user.js'))
 app.use('/auth', require('./routes/auths'))
 
-app.listen((process.env.PORT || 3000, () => {
+app.listen(process.env.PORT || 3000, () => {
   console.log('App is running')
 })
