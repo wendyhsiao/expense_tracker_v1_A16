@@ -1,7 +1,7 @@
 <div class="container mt-5">
   <div class="row">
     <div class="col-12 mb-5" style="text-align:center;">
-      <h2>總金額: {{sum}}</h2>
+      <h2>總金額: {{totalAmount}}</h2>
     </div>
   </div>
 
@@ -10,23 +10,16 @@
       <a href="/records/new" class="btn btn-primary mr-auto">新增支出</a>
       <select class="custom-select mr-auto col-5 col-right" name="category" Size=1
         onChange="self.location.href=this.value">
-        <option selected{{#ifhome item.category '類別 / 全部' itemAll}} selected="selected" {{/ifhome}}
-          value="/expenseTrackers">
-          類別
-          / 全部
-        </option>
-        <option {{#ifhome item.category '家居物業' itemAll}} selected="selected" {{/ifhome}} value="/?category=家居物業">家居物業
-        </option>
-        <option {{#ifhome item.category '交通出行' itemAll}} selected="selected" {{/ifhome}} value="/?category=交通出行">交通出行
-        </option>
-        <option {{#ifhome item.category '休閒娛樂' itemAll}} selected="selected" {{/ifhome}} value="/?category=休閒娛樂">休閒娛樂
-        </option>
-        <option {{#ifhome item.category '餐飲食品' itemAll}} selected="selected" {{/ifhome}} value="/?category=餐飲食品">餐飲食品
-        </option>
-        <option {{#ifhome item.category '其他' itemAll}} selected="selected" {{/ifhome}} value="/?category=其他">
-          其他
-        </option>
-      </select></div>
+        {{#select item.category}}
+        <option value="/?category=類別/全部"> 類別/全部 </option>
+        <option value="/?category=家居物業"> 家居物業 </option>
+        <option value="/?category=交通出行"> 交通出行 </option>
+        <option value="/?category=休閒娛樂"> 休閒娛樂 </option>
+        <option value="/?category=餐飲食品"> 餐飲食品 </option>
+        <option value="/?category=其他"> 其他 </option>
+        {{/select}}
+      </select>
+    </div>
   </div>
 
   <div class="row">
@@ -35,13 +28,20 @@
         {{#each records }}
         <li class="list-group-item ">
           <div class="input-group col-auto mb-3">
-            <div class="col-auto m-auto" id="basic-addon1">{{this.category}}</div>
-            <div class="col-auto m-auto">
+            <div class="col-2 m-auto text-center" id="basic-addon1">
+              {{#ifEquals this.category '家居物業' }}<i class="fas fa-home fa-2x" id="fa-home"></i>{{/ifEquals}}
+              {{#ifEquals this.category '交通出行' }}<i class="fas fa-shuttle-van fa-2x"
+                id="fa-shuttle-van"></i>{{/ifEquals}}
+              {{#ifEquals this.category '休閒娛樂' }}<i class="fas fa-grin-beam fa-2x" id="fa-grin-beam"></i>{{/ifEquals}}
+              {{#ifEquals this.category '餐飲食品' }}<i class="fas fa-utensils fa-2x" id="fa-utensils"></i>{{/ifEquals}}
+              {{#ifEquals this.category '其他' }}<i class="fas fa-pen fa-2x" id="fa-pen"></i>{{/ifEquals}}
+            </div>
+            <div class="col-4 m-auto text-center">
               <p>{{this.name}}</p>
               <span>{{this.date}}</span>
             </div>
-            <div class="col-auto m-auto" id="basic-addon2">{{this.amount}}</div>
-            <form action="/records/{{this.id}}/delete?_method=DELETE" method="POST" class="col-auto m-auto">
+            <div class="col-2 m-auto text-center" id="basic-addon2">{{this.amount}}</div>
+            <form action="/records/{{this.id}}/delete?_method=DELETE" method="POST" class="col-4 m-auto text-center ">
               <a href="/records/{{this.id}}/edit" class="btn btn-outline-primary mr-3">修改</a>
               <button type="submit" class="btn btn-outline-danger">刪除</button>
             </form>
