@@ -6,11 +6,14 @@ const bcrypt = require('bcryptjs')
 const record = require('../../record.json')
 const user = require('../../user.json')[0]
 
-mongoose.connect('mongodb://localhost/expenseTracker', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useCreateIndex: true
-})
+mongoose.connect(
+  process.env.MONGODB_URI || 'mongodb://localhost/expenseTracker',
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true
+  }
+)
 const db = mongoose.connection
 db.on('error', () => {
   console.log('mongodb error')

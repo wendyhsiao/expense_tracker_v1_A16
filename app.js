@@ -22,7 +22,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
 
 // 設定 mongoDB
-mongoose.connect('mongodb://localhost/expenseTracker', {
+mongoose.connect(process.env.MONGODB_URI ||'mongodb://localhost/expenseTracker', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true
@@ -66,6 +66,6 @@ app.use('/records', require('./routes/record.js'))
 app.use('/users', require('./routes/user.js'))
 app.use('/auth', require('./routes/auths'))
 
-app.listen(3000, () => {
+app.listen((process.env.PORT || 3000, () => {
   console.log('App is running')
 })
