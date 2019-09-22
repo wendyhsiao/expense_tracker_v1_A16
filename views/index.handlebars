@@ -41,8 +41,8 @@
               <span>{{this.date}}</span>
             </div>
             <div class="col-auto m-auto" id="basic-addon2">{{this.amount}}</div>
-            <form action="/expenseTrackers/{{this.id}}/delete?_method=DELETE" method="POST" class="col-auto m-auto">
-              <a href="/expenseTrackers/{{this.id}}/edit" class="btn btn-outline-primary mr-3">修改</a>
+            <form action="/records/{{this.id}}/delete?_method=DELETE" method="POST" class="col-auto m-auto">
+              <a href="/records/{{this.id}}/edit" class="btn btn-outline-primary mr-3">修改</a>
               <button type="submit" class="btn btn-outline-danger">刪除</button>
             </form>
           </div>

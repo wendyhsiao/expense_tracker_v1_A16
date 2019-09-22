@@ -50,16 +50,13 @@ router.get('/:id/edit', authenticated, (req, res) => {
   Record.findOne({ _id: req.params.id, userId: req.user._id }, (err, item) => {
     if (err) return console.error(err)
 
-    let objDate = item.date
-    var mm = objDate.getMonth() + 1
-    var dd = objDate.getDate()
-    var date2 = [
-      objDate.getFullYear(),
-      (mm > 9 ? '' : '0') + mm,
-      (dd > 9 ? '' : '0') + dd
-    ].join('-')
-    console.log('date2', date2)
-
+    let date = item.date
+    let yyyy = date.slice(0, 4)
+    let mm = date.slice(6, 7)
+    let dd = date.slice(9, 10)
+    var date2 = [yyyy, (mm > 9 ? '' : '0') + mm, (dd > 9 ? '' : '0') + dd].join(
+      '-'
+    )
     res.render('edit', { item: item, date2: date2 })
   })
 })
