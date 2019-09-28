@@ -24,3 +24,8 @@
   font-size: 80px;
   color: #f0b633;
 }
+
+/* 奇數行灰背景 */
+li:nth-child(odd) {
+  background-color: #f8f9fa;
+}
