@@ -11,12 +11,12 @@
       <select class="custom-select mr-auto col-5 col-right" name="category" Size=1
         onChange="self.location.href=this.value">
         {{#select item.category}}
-        <option value="/?category=類別/全部"> 類別/全部 </option>
-        <option value="/?category=家居物業"> 家居物業 </option>
-        <option value="/?category=交通出行"> 交通出行 </option>
-        <option value="/?category=休閒娛樂"> 休閒娛樂 </option>
-        <option value="/?category=餐飲食品"> 餐飲食品 </option>
-        <option value="/?category=其他"> 其他 </option>
+        <option value="/"> 類別/全部 </option>
+        <option value="/?category=houseware"> 家居物業 </option>
+        <option value="/?category=traffic"> 交通出行 </option>
+        <option value="/?category=entertainment"> 休閒娛樂 </option>
+        <option value="/?category=food"> 餐飲食品 </option>
+        <option value="/?category=other"> 其他 </option>
         {{/select}}
       </select>
     </div>
@@ -29,12 +29,7 @@
         <li class="list-group-item ">
           <div class="input-group col-auto mb-3">
             <div class="col-2 m-auto text-center" id="basic-addon1">
-              {{#ifEquals this.category '家居物業' }}<i class="fas fa-home fa-2x" id="fa-home"></i>{{/ifEquals}}
-              {{#ifEquals this.category '交通出行' }}<i class="fas fa-shuttle-van fa-2x"
-                id="fa-shuttle-van"></i>{{/ifEquals}}
-              {{#ifEquals this.category '休閒娛樂' }}<i class="fas fa-grin-beam fa-2x" id="fa-grin-beam"></i>{{/ifEquals}}
-              {{#ifEquals this.category '餐飲食品' }}<i class="fas fa-utensils fa-2x" id="fa-utensils"></i>{{/ifEquals}}
-              {{#ifEquals this.category '其他' }}<i class="fas fa-pen fa-2x" id="fa-pen"></i>{{/ifEquals}}
+              {{{this.icon}}}
             </div>
             <div class="col-4 m-auto text-center">
               <p>{{this.name}}</p>
