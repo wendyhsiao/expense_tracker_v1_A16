@@ -8,6 +8,7 @@ const Record = require('../models/record.js')
 const { authenticated } = require('../config/auth')
 
 Handlebars.registerHelper('select', function(selected, options) {
+  console.log('console.log(options.fn(this))', options.fn(this))
   return options
     .fn(this)
     .replace(
@@ -15,15 +16,6 @@ Handlebars.registerHelper('select', function(selected, options) {
       'value="/?category=' + selected + '" selected="selected"'
     )
 })
-
-// icon選擇
-// Handlebars.registerHelper('ifEquals', function(arg1, arg2, options) {
-//   if (arg1 == arg2) {
-//     return options.fn(this)
-//   } else {
-//     return options.inverse(this)
-//   }
-// })
 
 const categoryIcon = {
   houseware: `<i class="fas fa-home fa-2x" id="fa-home"></i>`,
@@ -47,13 +39,13 @@ router.get('/', authenticated, (req, res) => {
     records.forEach(recordsOne => {
       totalAmount += recordsOne.amount
       recordsOne.icon = categoryIcon[recordsOne.category]
-      console.log('category', category)
-      console.log('recordsOne.icon', recordsOne.icon)
+      // console.log('category', category)
+      // console.log('recordsOne.icon', recordsOne.icon)
     })
 
     return res.render('index', {
       records: records,
-      item: records[0],
+      categorySelect: category,
       itemAll: '類別 / 全部',
       totalAmount
     })

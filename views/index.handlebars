@@ -10,8 +10,9 @@
       <a href="/records/new" class="btn btn-primary mr-auto">新增支出</a>
       <select class="custom-select mr-auto col-5 col-right" name="category" Size=1
         onChange="self.location.href=this.value">
-        {{#select item.category}}
+
         <option value="/"> 類別/全部 </option>
+        {{#select categorySelect}}
         <option value="/?category=houseware"> 家居物業 </option>
         <option value="/?category=traffic"> 交通出行 </option>
         <option value="/?category=entertainment"> 休閒娛樂 </option>
